@@ -3,11 +3,13 @@
 #
 # Paolo Takagi-Atilano, April 2017
 
+L = ../libcs50
+
 # object files, and teh target library
-OBJS = pagedir.o
+OBJS = pagedir.o index.o word.o
 LIB = common.a
 
-FLAGS =
+FLAGS = -I$L
 
 CFLAGS = -Wall -pedantic -std=c11 -ggdb $(FLAGS)
 CC = gcc
@@ -18,7 +20,9 @@ $(LIB): $(OBJS)
 	ar cr $(LIB) $(OBJS)
 
 # Dependencies: object files depend on header files
-pagedir.o: pagedir.h
+pagedir.o: pagedir.h $L/webpage.h $L/file.h
+index.o: index.h $L/counters.h $L/hashtable.h $L/file.h
+word.o: word.h
 
 .PHONY: clean sourcelist
 

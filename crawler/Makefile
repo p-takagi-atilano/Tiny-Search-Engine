@@ -2,13 +2,13 @@
 #
 # Paolo Takagi-Atilano, April 2017
 
-L = ../libcs50
-LL = ../common
+LL = ../libcs50
+L = ../common
 
 PROG = crawler
 OBJS = crawler.o
-LIBS = $L/libcs50.a
-LLIBS = $(LL)/common.a
+LLIBS = $(LL)/libcs50.a
+LIBS = $(L)/common.a
 
 CFLAGS = -Wall -pedantic -std=c11 -ggdb -I$(LL) -I$L -lcurl
 CC = gcc
@@ -17,12 +17,16 @@ MAKE = make
 $(PROG): $(OBJS) $(LIBS) $(LLIBS)
 	$(CC) $(CFLAGS) $(OBJS) $(LIBS) $(LLIBS) -o $(PROG)
 
-crawler.o: $L/bag.h $L/hashtable.h $L/webpage.h $(LL)/pagedir.h
+crawler.o: $(LL)/bag.h $(LL)/hashtable.h $(LL)/webpage.h $(L)/pagedir.h
 
 
 
-.PHONY: clean
+.PHONY: clean all valgrind
 
 clean:
 	rm -f *~ *.o *.dSYM
 	rm -f $(PROG)
+
+all: $(PROG)
+
+valgrind: valgrind $(PROG)

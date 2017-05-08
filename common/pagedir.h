@@ -24,8 +24,18 @@
  */
 bool test_dir (char *dirname);
 
+/* given a directory name as a string, will see if this directory exists
+ * and has a .crawler file in it
+ * true means that it does
+ * false means that it does not
+ */
+bool is_crawled(const char *page_directory);
 
-
+/* Returns a pointer to a webpage, given page_directory and name of file
+ * This assumes that the page is generated in crawler format
+ * if problems, returns NULL
+ */
+struct webpage *load_page(const char *page_directory, const char *index_filename);
 
 
 #endif // __PAGEDIR_H

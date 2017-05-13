@@ -19,4 +19,9 @@
  */
 void normalize_word(char *word);
 
+/*
+ * given string, returns true if only letters in it.  else false.
+ */
+bool is_words(char *word);
+
 #endif // __WORD_H

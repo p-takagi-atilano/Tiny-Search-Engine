@@ -1,6 +1,6 @@
 # CS50 Tiny Search Engine
 
-My Name - April 2017
+Paolo Takagi-Atilano - April 2017
 
 To build, run `make`.
 
